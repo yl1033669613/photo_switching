@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>test</title>
+	<style>
+		body, html{
+	        padding: 0;
+	        margin: 0;
+	    }
+	    #app{
+	        height: 100vh;
+	        overflow: hidden
+	    }
+	    .photo-switching-box{
+	        height: 500px;
+	        box-sizing: border-box;
+	        padding: 15px 15px;
+	    }
+	    .photo-sw-loading{
+	        text-align: center;
+	        width: 100%;
+	        height: 100%;
+	        background:#454545;
+	        box-sizing: border-box;
+	        padding-top: 100px;
+	        font-size: 30px;
+	        color: #fff;
+	    }
+	    .cir-inside{
+	        width: 100%;
+	        height: 100%;
+	        background: #eee;
+	    }
+	</style>
+</head>
+<body>
+	<div id="app">
+        <div class="photo-switching-box"> <!-- 组件宽高默认为100% 大小继承父元素大小 -->
+            <photo-switching :photos="photoArr" @turnend="turnEndHandle($event)" @change="changeHandle($event)"> <!-- photo-switching组件 -->
+                <template slot-scope="slotProps"> <!-- 照片显示模板  slotProps为返回的照片数据可用于页面数据渲染 -->
+                    <span>{{slotProps.photo.name}}</span>
+                    <img :src="slotProps.photo.img" width="100%" alt="">
+                </template>
+                <template slot="loading"> <!-- loading 模板 在加载不到数据时显示的loading -->
+                    <div class="photo-sw-loading">
+                        这个是loading。。。。
+                    </div>
+                </template>
+                <template slot="l-circle"> <!-- 左侧圆圈 模板 如果需要-->
+                    <div class="cir-inside">左侧</div>
+                </template>
+                <template slot="r-circle"> <!-- 右侧圆圈 模板 如果需要-->
+                    <div class="cir-inside">右侧</div>
+                </template>
+            </photo-switching>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script src="../dist/photo-switching.js"></script>
+<script>
+	Vue.use('photoSwitching'); //注册插件
+	
+	var vm = new Vue({ //vue 实例
+		el: '#app',
+		data() {
+			return {
+				isLoad: false,
+	            photoArr: [{name: "测试11111111", img: './images/test-img11.png'}, {name: "测试2", img: './images/test-img21.png'}, {name: "测试3", img: './images/test-img31.png'},{name: "测试1", img: './images/test-img11.png'}, {name: "测试2", img: './images/test-img21.png'}, {name: "测试3", img: './images/test-img31.png'},{name: "测试1", img: './images/test-img11.png'}, {name: "测试2", img: './images/test-img21.png'}, {name: "测试3", img: './images/test-img31.png'}],
+	            photoArr1: [{name: "测试4", img: './images/test-img31.png'},{name: "测试4", img: './images/test-img31.png'},{name: "测试4", img: './images/test-img31.png'},{name: "测试4", img: './images/test-img31.png'},{name: "测试4", img: './images/test-img31.png'}]
+			}
+		},
+		methods: {
+			// 监听照片快要翻页完的时 触发获取更多数据的请求
+	        turnEndHandle(e) { // 实际ajax 加载时需要做防止多次请求 的处理
+	            let self = this;
+	            if (!self.isLoad) {
+	                self.isLoad = true;
+	               setTimeout(() => {
+	                    self.photoArr = self.photoArr1;
+	                    self.isLoad = false;
+	                },500) 
+	            }
+	        },
+	        changeHandle(e) { // 当一页被翻过时触发 返回被翻过的照片的数据
+	            console.log(e) 
+	            /* e的结构
+					{
+						direction: 'left', left 代表往左划 right 代表往右划
+                		item: {} 换过photo的数据 
+					}
+	            */
+	        }
+	    }
+	})
+</script>
+</html>
