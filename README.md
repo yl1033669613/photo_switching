@@ -18,6 +18,6 @@
 </script>
 ```
 
-具体页面请参考代码[demo.html]()
+具体页面请参考代码[demo.html](https://github.com/yl1033669613/photo_switching/blob/master/demo/demo.html)
 
-可以查看的[demo]()
+可以查看的[demo](https://yl1033669613.github.io/photo_switching/demo/demo.html)
