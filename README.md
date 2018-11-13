@@ -30,4 +30,4 @@
 
 具体页面请参考代码[demo.html](https://github.com/yl1033669613/photo_switching/blob/master/demo/demo.html)
 
-可以查看的[demo](https://yl1033669613.github.io/photo_switching/demo/demo.html)
+可以查看的[demo](https://yl1033669613.github.io/photo_switching/demo/demo.html) （pc端查看时请使用浏览器的移动端模拟功能，并且在移动端模式下刷新一次。）
