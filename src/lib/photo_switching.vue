@@ -78,6 +78,9 @@ export default {
     mounted() {
         // 获取容器宽度
         this.containerW = this.$refs.photoSC.clientWidth;
+
+        this._winResized();
+
         this.currTotal = this.photos;
 
         if (this.currTotal.length == 0) { //组件初始化判断
@@ -204,17 +207,18 @@ export default {
         // side circle ani
         _sideCircleAni(moveX) {
             let _opacity, _xMoveDis, _scale;
+            let isLeft = this.circleVisible === 'left';
             //透明度
-            _opacity = (this.circleVisible == 'left') ? (this.cirOpacity + this.moveDisX / 78) : (this.cirOpacity - this.moveDisX / 78);
+            _opacity = isLeft ? (this.cirOpacity + this.moveDisX / 78) : (this.cirOpacity - this.moveDisX / 78);
             this.cirOpacity = this._limitInMaxAndMin(1, 0, _opacity);
             //距离
-            _xMoveDis = (this.circleVisible == 'left') ? (this.cirXDis + this.moveDisX / .53) : (this.cirXDis - this.moveDisX / .53);
+            _xMoveDis = isLeft ? (this.cirXDis + this.moveDisX / .53) : (this.cirXDis - this.moveDisX / .53);
             this.cirXDis = this._limitInMaxAndMin(this.containerW / 2, 0, _xMoveDis);
             //缩放
-            _scale = (this.circleVisible == 'left') ? (this.cirScale + this.moveDisX / 87) : (this.cirScale - this.moveDisX / 87);
+            _scale = isLeft ? (this.cirScale + this.moveDisX / 87) : (this.cirScale - this.moveDisX / 87);
             this.cirScale = this._limitInMaxAndMin(1, .1, _scale);
 
-            if (this.circleVisible == 'left') {
+            if (isLeft) {
                 this.rCircleSty = {
                     opacity: 0,
                     transform: 'scale3d(.1, .1, 1) translate3d(50%, 0, 0)',
@@ -413,7 +417,7 @@ export default {
         },
         //当前数组翻页快结束的自定义事件
         _turnToTheEnd() {
-            this.$emit('turnend', {state: 'close end'});
+            this.$emit('turnend', {state: 'Close to the end'});
         },
         _isChangePage(direction, item) {
             let itemObj = {};
@@ -426,6 +430,13 @@ export default {
                 direction: direction,
                 item: itemObj
             })
+        },
+        _winResized() {
+            let self = this;
+            //窗口变化时更新容器宽度
+            window.addEventListener('resize', function(e) {
+                self.containerW = self.$refs.photoSC.clientWidth;
+            });
         }
     }
 }

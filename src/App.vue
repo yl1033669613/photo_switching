@@ -31,9 +31,9 @@ export default {
     data() {
         return {
             isLoad: false,
-            photoArr: [{name: "测试11111111", img: 'http://192.168.1.5:8081/test-img11.png'}, {name: "测试2", img: 'http://192.168.1.5:8081/test-img21.png'}, {name: "测试3", img: 'http://192.168.1.5:8081/test-img31.png'},{name: "测试1", img: 'http://192.168.1.5:8081/test-img11.png'}, {name: "测试2", img: 'http://192.168.1.5:8081/test-img21.png'}, {name: "测试3", img: 'http://192.168.1.5:8081/test-img31.png'},{name: "测试1", img: 'http://192.168.1.5:8081/test-img11.png'}, {name: "测试2", img: 'http://192.168.1.5:8081/test-img21.png'}, {name: "测试3", img: 'http://192.168.1.5:8081/test-img31.png'}],
-            photoArr1: [{name: "测试4", img: 'http://192.168.1.5:8081/test-img31.png'},{name: "测试4", img: 'http://192.168.1.5:8081/test-img31.png'},{name: "测试4", img: 'http://192.168.1.5:8081/test-img31.png'},{name: "测试4", img: 'http://192.168.1.5:8081/test-img31.png'},{name: "测试4", img: 'http://192.168.1.5:8081/test-img31.png'}],
-            photoArr2: [{name: "测试1", img: 'http://192.168.1.5:8081/test-img11.png'}]
+            photoArr: [{name: "测试11111111", img: '/demo/images/test-img11.png'}, {name: "测试2", img: '/demo/images/test-img21.png'}, {name: "测试3", img: '/demo/images/test-img31.png'},{name: "测试1", img: '/demo/images/test-img11.png'}, {name: "测试2", img: '/demo/images/test-img21.png'}, {name: "测试3", img: '/demo/images/test-img31.png'},{name: "测试1", img: '/demo/images/test-img11.png'}, {name: "测试2", img: '/demo/images/test-img21.png'}, {name: "测试3", img: '/demo/images/test-img31.png'}],
+            photoArr1: [{name: "测试4", img: '/demo/images/test-img31.png'},{name: "测试4", img: '/demo/images/test-img31.png'},{name: "测试4", img: '/demo/images/test-img31.png'},{name: "测试4", img: '/demo/images/test-img31.png'},{name: "测试4", img: '/demo/images/test-img31.png'}],
+            photoArr2: [{name: "测试1", img: '/demo/images/test-img11.png'}]
         }
     },
     mounted() {
